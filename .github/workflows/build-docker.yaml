@@ -4,13 +4,13 @@ on:
     branches:
       - main
 jobs:
-  publish_image:
-  runs-on: ubuntu-latest
-  steps:
-    - name: checkout
-      uses: actions/checkout@v4
-    - name: build and push image
-      run: |
-        docker build -t dr0nn1/organizarr:latest .
-        docker login -u dr0nn1 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker push dr0nn1/organizarr:latest
+    publish_image:
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v4
+        - name: build and push image
+          run: |
+            docker build -t dr0nn1/organizarr:latest .
+            docker login -u dr0nn1 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+            docker push dr0nn1/organizarr:latest
