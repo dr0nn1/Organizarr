@@ -41,17 +41,16 @@ def getRename(serieId: int, seasonNumber: int) -> list[str]:
 
 def start():
     data = getDictOfSeries()
-    logging.info(f"Renaming {len(data)} series")
-    for seriesId in data:
-        for season in data[seriesId]:
+    for index, (seriesId, seasons) in enumerate(data.items(), start=1):
+        for season in seasons:
             renameEpisodes = getRename(seriesId, season)
             if len(renameEpisodes) > 0:
                 sonarr.renameCommand(seriesId, renameEpisodes)
                 logging.info(
-                    f"Renaming serie = {seriesId}, episodes = {renameEpisodes}"
+                    f"Checked {index} of {len(data)} series - Renaming serie = {seriesId}, episodes = {renameEpisodes}"
                 )
-        if len(data) > 10:
-            time.sleep(60)  # 1 min, prevent flooding of sonarr
+                time.sleep(60)  # 1 min, prevent flooding of sonarr
+    logging.info("Finished cleanup")
 
 
 if __name__ == "__main__":
