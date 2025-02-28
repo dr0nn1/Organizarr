@@ -24,7 +24,7 @@ def getDictOfSeries() -> dict:
             series["id"]: [
                 season["seasonNumber"]
                 for season in series["seasons"]
-                if season["statistics"]["episodeFileCount"] > 0
+                if season.get("statistics", {}).get("episodeFileCount", 0) > 0
             ]
             for series in data
         }
