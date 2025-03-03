@@ -9,9 +9,13 @@ sonarr:
   host: "xxx.xxx.x.xxx"
   port: "8989"
   api_key: "xxxxxxxxxxxxxxx"
+  qbit:
+  host: "xxx.xxx.x.xxx"
+  port: "8090"
+  interval: 120 # Minute. Scans every x minute
 schedule:
   time: "hh:mm" # Example 16:38
-  sleep: 300 # Example, if you schedule the task at 14:00 and your script happens to be sleeping at 13:59:59, the task will execute closer to 14:05.
+  sleep: 300 # Seconds. Example, if you schedule the task at 14:00 and your script happens to be sleeping at 13:59:59, the task will execute closer to 14:05.
 ```
 
 ## Docker compose:

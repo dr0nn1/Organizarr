@@ -1,4 +1,5 @@
 from sonarr import Sonarr
+from qbit import Qbit
 import schedule
 import logging
 import time
@@ -64,6 +65,12 @@ if __name__ == "__main__":
     sleepTime = config["schedule"]["sleep"]
 
     logging.info(f"Scheduler set to run daily at {scheduleTime}. Waiting for tasks...")
+
+    qbitConfig = config.get("qbit", None)
+    if qbitConfig is not None:
+        qbit = Qbit(qbitConfig["host"], qbitConfig["port"])
+        interval = qbitConfig["interval"]
+        schedule.every(interval).minutes.do(qbit.checkForInvalidFiles)
 
     while True:
         try:
