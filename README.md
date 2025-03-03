@@ -9,7 +9,7 @@ sonarr:
   host: "xxx.xxx.x.xxx"
   port: "8989"
   api_key: "xxxxxxxxxxxxxxx"
-  qbit:
+qbit:
   host: "xxx.xxx.x.xxx"
   port: "8090"
   interval: 120 # Minute. Scans every x minute
