@@ -34,6 +34,7 @@ class Qbit:
         return False
 
     def checkForInvalidFiles(self):
+        print(f"Checking for invalid files")
         try:
             hashes = self.getTorrents()
             for hash in hashes:
