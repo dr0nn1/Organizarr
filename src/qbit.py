@@ -1,4 +1,11 @@
 import requests
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 
 class Qbit:
@@ -34,16 +41,16 @@ class Qbit:
         return False
 
     def checkForInvalidFiles(self):
-        print(f"Checking for invalid files")
+        logging.info(f"Checking for invalid files")
         try:
             hashes = self.getTorrents()
             for hash in hashes:
                 files = self.getFiles(hash)
                 if self.invalidFileType(files):
-                    print(f"Deleting hash: {hash}")
+                    logging.info(f"Deleting hash: {hash}")
                     self.deleteTorrent(hash)
         except Exception as e:
-            print(f"Error occurred when deleting torrents", e)
+            logging.error(f"Error occurred when deleting torrents", e)
 
     def invalidFileType(self, files: list[str]) -> bool:
         invalidTypes = ["lnk"]
