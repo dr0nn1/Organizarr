@@ -47,8 +47,9 @@ def start():
             renameEpisodes = getRename(seriesId, season)
             if len(renameEpisodes) > 0:
                 sonarr.renameCommand(seriesId, renameEpisodes)
+                name = sonarr.getSeriesName(seriesId)
                 logging.info(
-                    f"Checked {index} of {len(data)} series - Renaming serie = {seriesId}, episodes = {renameEpisodes}"
+                    f"Checked {index} of {len(data)} series - Renaming serie = {seriesId} ({name}), episodes = {renameEpisodes}"
                 )
                 time.sleep(60)  # 1 min, prevent flooding of sonarr
     logging.info("Finished cleanup")
